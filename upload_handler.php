@@ -12,7 +12,7 @@ $app->addErrorMiddleware(true, true, true);
 
 
 $app->post('/upload', function (Request $request, Response $response, $args) {
-  $directory = 'D:/uploads';
+  $directory = '../uploads';
   $uploadedFiles = $request->getUploadedFiles();
   $response = $response->withHeader('Content-Type', 'application/json');
 

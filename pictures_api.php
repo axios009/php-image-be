@@ -12,7 +12,7 @@ $app->addErrorMiddleware(true, true, true);
 
 
 $app->get('/list', function (Request $request, Response $response, $args) {
-  $directory = 'D://uploads';
+  $directory = '../uploads';
   $files = array_diff(scandir($directory), array('..', '.'));
   $pictures = [];
 
@@ -32,6 +32,20 @@ $app->get('/list', function (Request $request, Response $response, $args) {
 
   $response = $response->withHeader('Content-Type', 'application/json');
   $response->getBody()->write(json_encode($pictures));
+  return $response;
+});
+
+$app->post('/delete', function (Request $request, Response $response, $args) {
+  $directory = '../uploads';
+  $r = $request->getParsedBody();
+  $r = (object) $r;
+  $filename = $r->filename;
+  $filepath = $directory . '/' . $filename;
+  if (is_file($filepath)) {
+    unlink($filepath);
+  }
+  $response = $response->withHeader('Content-Type', 'application/json');
+  $response->getBody()->write(json_encode('Success'));
   return $response;
 });
 

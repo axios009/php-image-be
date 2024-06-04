@@ -17,8 +17,16 @@ $app->get('/health', function (Request $request, Response $response, $args) {
 });
 
 $app->post('/login', function (Request $request, Response $response, $args) {
+  $r = $request->getParsedBody();
+  $r = (object) $r;
+  $username = $r->username;
+  $password = $r->password;
   $response = $response->withHeader('Content-Type', 'application/json');
-  $response->getBody()->write(json_encode(['status' => "Success"]));
+  if ($username == 'admin' && $password == '77x12345678') {
+    $response->getBody()->write(json_encode(['status' => "Success"]));
+  } else {
+    $response->getBody()->write(json_encode(['status' => "Fail"]));
+  }
   return $response;
 });
 
