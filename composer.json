@@ -1,0 +1,14 @@
+{
+  "name": "axios/php-image-be",
+  "authors": [
+    {
+      "name": "axios009",
+      "email": "axios.acadia@gmail.com"
+    }
+  ],
+  "require": {
+    "slim/slim": "3.0.0",
+    "slim/psr7": "^1.6",
+    "nyholm/psr7": "^1.8"
+  }
+}
